@@ -1,0 +1,48 @@
+.sidebar {
+  position: fixed;
+  left: 0px;
+  top: 60px;
+  width: 150px;
+  border-right: 1px solid #eeeeee;
+  height: calc(100dvh - 60px);
+}
+
+.sidebar-menu {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.sidebar-menu > svg {
+  width: 20px;
+  margin-right: 5px;
+  /* box-shadow: 0px 0px 5px lightgray; */
+  border: 1px solid lightgray;
+  stroke: silver;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.sidebar-menu-label {
+  font-size: 14px;
+  color: silver;
+}
+
+.sidebar-menu:hover > .sidebar-menu-label {
+  color: black;
+}
+
+.sidebar-menu:hover > svg {
+  stroke: black;
+}
+.sidebar-menu[data-active="true"] > .sidebar-menu-label {
+  color: black;
+  font-weight: bold;
+}
+.sidebar-menu[data-active="true"] > svg {
+  stroke: black;
+  stroke-width: 2px;
+  border-color: black;
+}
