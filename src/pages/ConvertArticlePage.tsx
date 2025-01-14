@@ -2,10 +2,10 @@ import { useState } from "react";
 import { pageCls } from "../consts/className";
 
 const ConvertArticlePage = () => {
-  const [convertedDisplayText, setConvertedDisplayText] = useState<string>("");
+  const [convertedDisplayText, _setConvertedDisplayText] = useState<string>("");
   ("");
-  const [convertedText, setConvertedText] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [convertedText, _setConvertedText] = useState<string>("");
+  const [isLoading, _setIsLoading] = useState<boolean>(false);
 
   const handleClickAnalysis = () => {};
   const handleChangeArticle = () => {};

@@ -3,8 +3,6 @@ import { sidebarCls } from "../consts/className";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ConverterIcon } from "./icons";
 
-interface SidebarProps {}
-
 type SidebarMenu = {
   href: string;
   label: string;
