@@ -12,39 +12,18 @@ const LOCALSTORAGE_KEYS = {
   CONVERTED_TEXT: "keyword-page-converted-text",
   CONVERTED_DISPLAY_ARTICLE: "keyword-page-converted-display-text",
 };
-// keyword-page-article
-// x
-// keyword-page-replace-textmap
-// keyword-page-processed-article
+
 const ConvertPage = () => {
   const [keywords, setKeywords] = useState<Record<string, string[]> | null>(
-    // null
-    // localStorage.getItem(LOCALSTORAGE_KEYS.KEYWORDS) &&
-    //   JSON.parse(localStorage.getItem(LOCALSTORAGE_KEYS.KEYWORDS) || {})
-    //   ? JSON.parse(localStorage.getItem(LOCALSTORAGE_KEYS.KEYWORDS) || "")
     null
   );
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [article, setArticle] = useState<string>(
-    // localStorage.getItem(LOCALSTORAGE_KEYS.ARTICLE) ||
-    ""
-  );
-  const [convertedText, setConvertedText] = useState<string>(
-    // localStorage.getItem(LOCALSTORAGE_KEYS.CONVERTED_TEXT) ||
-    ""
-  );
-  const [convertedDisplayText, setConvertedDisplayText] = useState<string>(
-    // localStorage.getItem(LOCALSTORAGE_KEYS.CONVERTED_DISPLAY_ARTICLE) ||
-    ""
-  );
+  const [article, setArticle] = useState<string>("");
+  const [convertedText, setConvertedText] = useState<string>("");
+  const [convertedDisplayText, setConvertedDisplayText] = useState<string>("");
   const [replaceTextMap, setReplaceTextMap] = useState<Record<string, string>>(
     {}
-    // localStorage.getItem(LOCALSTORAGE_KEYS.REPLACE_TEXTMAP)
-    //   ? JSON.parse(
-    //       localStorage.getItem(LOCALSTORAGE_KEYS.REPLACE_TEXTMAP) || ""
-    //     )
-    //   : {}
   );
   const [resultModalOpen, setResultModalOpen] = useState<boolean>(false);
   const [processedArticle, setProcessedArticle] = useState<string>("");
@@ -102,10 +81,6 @@ const ConvertPage = () => {
     setReplaceTextMap((prev) => ({ ...prev, [srcKeyword]: replaceKeyword }));
   };
 
-  // const handleChangeConvertedText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-  //   setConvertedText(e.target.value);
-  // };
-
   const onChangeReplaceKeyword = () => {
     let replacedArticle = article || "";
     let replacedDisplayArticle = article || "";
@@ -134,7 +109,6 @@ const ConvertPage = () => {
 
   const handleClickRandomKeyword = () => {
     if (!keywords || !Object.keys(keywords).length) return;
-    // batch update 확인
     for (const srcKeyword in keywords) {
       const randomIndex = Math.floor(
         Math.random() * keywords[srcKeyword].length
@@ -179,26 +153,26 @@ const ConvertPage = () => {
     setResultModalOpen(false);
   };
 
-  useEffect(() => {
-    localStorage.setItem(LOCALSTORAGE_KEYS.KEYWORDS, article || "");
-    localStorage.setItem(LOCALSTORAGE_KEYS.CONVERTED_TEXT, convertedText || "");
-    if (keywords && Object.keys(keywords).length) {
-      localStorage.setItem(
-        "keyword-page-replace-keywords",
-        JSON.stringify(keywords)
-      );
-    }
-    if (replaceTextMap && Object.keys(replaceTextMap).length) {
-      localStorage.setItem(
-        LOCALSTORAGE_KEYS.REPLACE_TEXTMAP,
-        JSON.stringify(replaceTextMap)
-      );
-    }
-    localStorage.setItem(
-      LOCALSTORAGE_KEYS.CONVERTED_DISPLAY_ARTICLE,
-      convertedDisplayText || ""
-    );
-  }, [keywords, replaceTextMap, convertedDisplayText, article, convertedText]);
+  // useEffect(() => {
+  //   // localStorage.setItem(LOCALSTORAGE_KEYS.KEYWORDS, article || "");
+  //   // localStorage.setItem(LOCALSTORAGE_KEYS.CONVERTED_TEXT, convertedText || "");
+  //   // if (keywords && Object.keys(keywords).length) {
+  //   //   localStorage.setItem(
+  //   //     "keyword-page-replace-keywords",
+  //   //     JSON.stringify(keywords)
+  //   //   );
+  //   // }
+  //   // if (replaceTextMap && Object.keys(replaceTextMap).length) {
+  //   //   localStorage.setItem(
+  //   //     LOCALSTORAGE_KEYS.REPLACE_TEXTMAP,
+  //   //     JSON.stringify(replaceTextMap)
+  //   //   );
+  //   // }
+  //   // localStorage.setItem(
+  //   //   LOCALSTORAGE_KEYS.CONVERTED_DISPLAY_ARTICLE,
+  //   //   convertedDisplayText || ""
+  //   // );
+  // }, [keywords, replaceTextMap, convertedDisplayText, article, convertedText]);
 
   return (
     <div className={pageCls}>
@@ -222,14 +196,6 @@ const ConvertPage = () => {
           </div>
           {convertedText && (
             <>
-              {/* <div className={"convert-result-wrapper"}>
-                <textarea
-                  className={"convert-result-textarea"}
-                  readOnly
-                  onChange={handleChangeConvertedText}
-                  value={convertedText}
-                />
-              </div> */}
               <div
                 className={"convert-result-wrapper"}
                 dangerouslySetInnerHTML={{ __html: convertedDisplayText }}

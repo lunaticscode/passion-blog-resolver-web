@@ -10,9 +10,9 @@ type SidebarMenu = {
 };
 
 const sidebarMenus: SidebarMenu[] = [
-  { href: "/convert-keyword", label: "키워드 재조합", icon: <ConverterIcon /> },
+  // { href: "/convert-keyword", label: "-", icon: <ConverterIcon /> },
+  { href: "/convert-article", label: "키워드 재조합", icon: <ConverterIcon /> },
   { href: "/convert-sentence", label: "문장 재조합", icon: <ConverterIcon /> },
-  { href: "/convert-article", label: "글 재조합", icon: <ConverterIcon /> },
 ];
 
 const Sidebar = () => {

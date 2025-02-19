@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { api } from "../utils/api";
-export type ExtractType = "keyword" | "sentence" | "article";
+export type ExtractType = "keyword" | "sentence" | "article" | "keyword2";
 const useExtractFromGPT = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
+
   const getExtractResult = async (type: ExtractType, article: string) => {
     if (isLoading) return;
     try {
