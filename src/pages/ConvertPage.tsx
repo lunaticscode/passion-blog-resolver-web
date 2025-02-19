@@ -5,13 +5,13 @@ import axios from "axios";
 import ConvertResultModal from "../components/convert/ConvertResultModal";
 import Loading from "../components/Loading";
 import { addStopCharFromPerSentence, filteredTextarea } from "../utils/char";
-const LOCALSTORAGE_KEYS = {
-  ARTICLE: "keyword-page-article",
-  KEYWORDS: "keyword-page-replace-keywords",
-  REPLACE_TEXTMAP: "keyword-page-replace-textmap",
-  CONVERTED_TEXT: "keyword-page-converted-text",
-  CONVERTED_DISPLAY_ARTICLE: "keyword-page-converted-display-text",
-};
+// const LOCALSTORAGE_KEYS = {
+//   ARTICLE: "keyword-page-article",
+//   KEYWORDS: "keyword-page-replace-keywords",
+//   REPLACE_TEXTMAP: "keyword-page-replace-textmap",
+//   CONVERTED_TEXT: "keyword-page-converted-text",
+//   CONVERTED_DISPLAY_ARTICLE: "keyword-page-converted-display-text",
+// };
 
 const ConvertPage = () => {
   const [keywords, setKeywords] = useState<Record<string, string[]> | null>(
