@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment, useEffect, useState } from "react";
+import { ChangeEvent, FC, Fragment, useEffect, useMemo, useState } from "react";
 import { pageCls } from "../consts/className";
 import { api } from "../utils/api";
 import Accordion from "../components/Accordion";
@@ -9,7 +9,19 @@ import Loading from "../components/Loading";
 const filteredRegex =
   /(form\.naver\.com|네이버 폼 설문에 바로 참여해 보세요|blog\.naver\.com)/g;
 
-const ConvertArticlePage = () => {
+interface ConvertKeywordPageProps {
+  mode?: "basic" | "multi";
+}
+const ConvertKeywordPage: FC<ConvertKeywordPageProps> = ({
+  mode = "basic",
+}) => {
+  const submitText = useMemo(
+    () =>
+      mode === "basic"
+        ? "변환된 키워드에 맞는 조사 생성"
+        : "조사 재적용 + 구조 변경",
+    [mode]
+  );
   const [convertTargetText, setConvertTargetText] = useState<string>("");
   const [convertTargetSentenceList, setConvertTargetSentenceList] = useState<
     string[]
@@ -94,6 +106,7 @@ const ConvertArticlePage = () => {
       setProcessedArticle("");
       const processedResult = await axios.post("/keyword/processing-article", {
         article: convertedText,
+        withStructure: mode === "basic" ? false : true,
       });
       const { isError, data } = processedResult.data;
       if (isError) {
@@ -245,7 +258,7 @@ const ConvertArticlePage = () => {
                   disabled={isLoading}
                   onClick={hadnleClickProcessingArticle}
                 >
-                  변환된 키워드에 맞는 조사 생성
+                  {submitText}
                 </button>
               </div>
             </>
@@ -475,4 +488,4 @@ const ConvertArticlePage = () => {
     </div>
   );
 };
-export default ConvertArticlePage;
+export default ConvertKeywordPage;

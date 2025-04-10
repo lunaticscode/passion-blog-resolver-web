@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout.tsx";
@@ -6,9 +5,9 @@ import DashboardPage from "./pages/DashboardPage.tsx";
 import "./index.css";
 import SigninPage from "./pages/SigninPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
-import ConvertPage from "./pages/ConvertPage.tsx";
-import ConvertArticlePage from "./pages/ConvertArticlePage.tsx";
+import ConvertKeywordPage from "./pages/ConvertKeywordPage.tsx";
 import ConvertSentencePage from "./pages/ConvertSentencePage.tsx";
+import ConvertStructureByKeywordPage from "./pages/ConvertStructureByKeywordPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,9 +15,12 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <DashboardPage /> },
-      { path: "/convert-keyword", element: <ConvertPage /> },
       { path: "/convert-sentence", element: <ConvertSentencePage /> },
-      { path: "/convert-article", element: <ConvertArticlePage /> },
+      { path: "/convert-keyword", element: <ConvertKeywordPage /> },
+      {
+        path: "/convert-structure",
+        element: <ConvertStructureByKeywordPage />,
+      },
       { path: "/signin", element: <SigninPage /> },
     ],
   },
@@ -26,7 +28,5 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+  <RouterProvider router={router} />
 );
