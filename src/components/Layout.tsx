@@ -1,16 +1,26 @@
-import { FC } from "react";
-import { Outlet } from "react-router-dom";
+import { FC, useMemo } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import WithAuth from "../hocs/WithAuth";
+import { UserProfile } from "../types/entity";
 
-interface LayoutProps {}
-const Layout: FC<LayoutProps> = () => {
+interface LayoutProps {
+  profile: UserProfile | null;
+}
+const Layout: FC<LayoutProps> = ({ profile }) => {
+  const location = useLocation();
+  const isSignPage = useMemo(
+    () => location.pathname === "/signin",
+    [location.pathname]
+  );
+
   return (
     <>
-      <Header />
-      <Sidebar />
+      {!isSignPage && <Header profile={profile} />}
+      {!isSignPage && <Sidebar />}
       <Outlet />
     </>
   );
 };
-export default Layout;
+export default WithAuth(Layout);

@@ -8,6 +8,7 @@ import NotFoundPage from "./pages/NotFoundPage.tsx";
 import ConvertKeywordPage from "./pages/ConvertKeywordPage.tsx";
 import ConvertSentencePage from "./pages/ConvertSentencePage.tsx";
 import ConvertStructureByKeywordPage from "./pages/ConvertStructureByKeywordPage.tsx";
+import SigninSuccess from "./pages/SigninSuccess.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,9 +22,10 @@ const router = createBrowserRouter([
         path: "/convert-structure",
         element: <ConvertStructureByKeywordPage />,
       },
-      { path: "/signin", element: <SigninPage /> },
     ],
   },
+  { path: "/signin", element: <SigninPage /> },
+  { path: "/signin-success", element: <SigninSuccess /> },
   { path: "*", element: <NotFoundPage /> },
 ]);
 
