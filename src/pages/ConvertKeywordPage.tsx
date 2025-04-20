@@ -104,7 +104,7 @@ const ConvertKeywordPage: FC<ConvertKeywordPageProps> = ({
     try {
       setIsLoading(true);
       setProcessedArticle("");
-      const processedResult = await axios.post("/keyword/processing-article", {
+      const processedResult = await api.post("/keyword/processing-article", {
         article: convertedText,
         withStructure: mode === "basic" ? false : true,
       });

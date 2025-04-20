@@ -214,7 +214,7 @@
   width: 100%;
   max-width: 100%;
   overflow: auto;
-  height: calc(100dvh - 200px);
+  height: calc(100dvh - 80px);
 }
 .convert-sentence-wrapper > .accordion-button {
 }

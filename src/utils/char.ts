@@ -11,17 +11,6 @@ export const filteredTextarea = (str: string) => {
 };
 
 export const addStopCharFromPerSentence = (str: string) => {
-  console.log(str);
-  const addedStr1 = str.split("\n").map((sen) => {
-    if (sen[sen.length - 1] === ".") {
-      return sen;
-    }
-    if (sen.trim() === "") {
-      return "\n";
-    }
-    return `${sen}.\n`;
-  });
-  console.log(addedStr1);
   const addedStr = str
     .split("\n")
     .map((sen) => {

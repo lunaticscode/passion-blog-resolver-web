@@ -27,16 +27,22 @@ const ConvertSentencePage = () => {
       setSentenceList(null);
       setConvertedText("");
       setConvertedDisplayText("");
-      const targetSentenceList = article
-        .split(".")
+
+      let targetSentenceList = article.split(".");
+      if (targetSentenceList.length <= Math.floor(article.length / 100)) {
+        targetSentenceList = targetSentenceList.join("").split("\n");
+      }
+
+      targetSentenceList = targetSentenceList
         .map((sentence) =>
           sentence
             .trim()
-            .replace(/\n/g, "")
             .replace(/\t/g, "")
+            .replace(/\n/g, "")
             .replace(/\b/g, "")
         )
-        .filter((v) => v);
+        .filter((v) => v.trim().length > 1);
+
       setIsLoading(true);
       const extractResult = await Promise.all(
         targetSentenceList.map(async (ts) => [
@@ -52,7 +58,6 @@ const ConvertSentencePage = () => {
         acc[cur[0]] = cur[1];
         return acc;
       }, {} as Record<string, Array<string>>);
-      // console.log(resultMap);
       setSentenceList(resultMap);
 
       if (resultMap && Object.keys(resultMap).length) {
@@ -83,13 +88,11 @@ const ConvertSentencePage = () => {
   const onChangeSrcArticle = () => {
     let replacedArticle = article || "";
     let replacedDisplayArticle = article || "";
-    // console.log("article", article);
+
     for (const targetText in replaceTextMap) {
       const replaceText = replaceTextMap[targetText] || targetText;
 
       const regex = new RegExp(escapeRegExp(targetText), "g");
-      // console.log(regex, targetText);
-      // console.log(regex.test(targetText));
       replacedArticle = replacedArticle.replace(regex, replaceText);
 
       replacedDisplayArticle = replacedDisplayArticle.replace(

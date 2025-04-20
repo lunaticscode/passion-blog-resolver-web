@@ -17,6 +17,11 @@ const sidebarMenus: SidebarMenu[] = [
     icon: <ConverterIcon />,
   },
   { href: "/convert-sentence", label: "문장 재조합", icon: <ConverterIcon /> },
+  {
+    href: "/convert-structure-from-sentence",
+    label: "문장 재조합 + 구조 변경",
+    icon: <ConverterIcon />,
+  },
 ];
 
 const Sidebar = () => {
